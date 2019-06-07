@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang =ja>
+<head>
+ <meta charset="utf-8">
+ <title>高山ステージ</title>
+
+<script>
+document.onkeydown = onKeyDown;
+ 
+var cnt; 
+var mondai1="";
+var kc;
+var kc1;
+var problemStatement1;
+var problemStatement2;
+    
+function onKeyDown(evt){
+
+　if (document.all)
+  {
+    kc = event.keyCode;
+  }
+  else
+  {
+    kc = evt.which;
+  }
+    
+if(kc == 8){
+      var a = mondai1.slice(0,-1);
+      document.getElementById("waku3").innerHTML = a;
+} 
+
+mondaihantei();
+    
+for( i = 0; i < keydowntable1.length; i++){
+    if(kc == keydowntable1[i][0]){
+        kc1 = keydowntable1[i][1];
+        mondai1 = mondai1 + kc1;
+        document.getElementById("waku3").innerHTML = mondai1;
+    }
+}
+ 
+}
+    
+function reset(){
+        mondai1 = "";
+        cnt = 0;
+        document.getElementById("waku3").innerHTML = mondai1;
+        document.getElementById("status").innerHTML = cnt;
+    }
+    
+//グローバル変数置き場
+// Shiftキーを押していない時のキーテーブル
+var keydowntable1 = [[49,"1"],
+		[50,"2"],
+		[51,"3"],
+		[52,"4"],
+		[53,"5"],
+		[54,"6"],
+		[55,"7"],
+		[56,"8"],
+		[57,"9"],
+		[48,"0"],
+		[189,"-"],
+		[173,"-"],
+		[222,"^"],
+		[160,"^"],
+		[220,"\\"],
+		[81,"q"],
+		[87,"w"],
+		[69,"e"],
+		[82,"r"],
+		[84,"t"],
+		[89,"y"],
+		[85,"u"],
+		[73,"i"],
+		[79,"o"],
+		[80,"p"],
+		[192,"@"],
+		[64,"@"],
+		[219,"["],
+		[65,"a"],
+		[83,"s"],
+		[68,"d"],
+		[70,"f"],
+		[71,"g"],
+		[72,"h"],
+		[74,"j"],
+		[75,"k"],
+		[76,"l"],
+		[187,";"],
+		[59,";"],
+		[186,":"],
+		[58,":"],
+		[221,"]"],
+		[90,"z"],
+		[88,"x"],
+		[67,"c"],
+		[86,"v"],
+		[66,"b"],
+		[78,"n"],
+		[77,"m"],
+		[188,","],
+		[190,"."],
+		[191,"/"],
+		[226,"\\"],
+		[32," "]];
+		
+// Shiftキーを押している時のキーテーブル
+var keydowntable2 = new Array([49,"!"],
+		[50,"\""],
+		[51,"#"],
+		[52,"$"],
+		[53,"%"],
+		[54,"&"],
+		[55,"\'"],
+		[56,"("],
+		[57,")"],
+		[189,"="],
+		[173,"="],
+		[222,"~"],
+		[160,"~"],
+		[220,"|"],
+		[81,"Q"],
+		[87,"W"],
+		[69,"E"],
+		[82,"R"],
+		[84,"T"],
+		[89,"Y"],
+		[85,"U"],
+		[73,"I"],
+		[79,"O"],
+		[80,"P"],
+		[192,"`"],
+		[64,"`"],
+		[219,"{"],
+		[65,"A"],
+		[83,"S"],
+		[68,"D"],
+		[70,"F"],
+		[71,"G"],
+		[72,"H"],
+		[74,"J"],
+		[75,"K"],
+		[76,"L"],
+		[187,"+"],
+		[59,"+"],
+		[186,"*"],
+		[58,"*"],
+		[221,"}"],
+		[90,"Z"],
+		[88,"X"],
+		[67,"C"],
+		[86,"V"],
+		[66,"B"],
+		[78,"N"],
+		[77,"M"],
+		[188,"<"],
+		[190,">"],
+		[191,"?"],
+		[226,"_"],
+		[32," "]);
+
+var mondai = new Array(["ポジピース","posipi-su"],
+                       ["新車買うんです","shinnsyakaunndesu"]); 
+    
+    
+var ransu1;
+//以下ゲーム中身
+
+//問題作成
+function ransu(){
+    ransu1 = Math.floor( Math.random() * 2 );
+}
+    
+function mondaiMake(){
+    problemStatement1 = mondai[ransu1][0];
+    problemStatement2 = mondai[ransu1][1];
+    document.getElementById("waku1").innerHTML = problemStatement1;
+    document.getElementById("waku2").innerHTML = problemStatement2;
+}
+    
+function mondaihantei(){
+    if(kc == 13){
+        if(problemStatement2 == mondai1){
+            cnt++;
+            cntHyouzi();
+            mondaiMake();
+            var audio = new Audio("../music/成功音.mp3");
+            audio.play();
+        }else{
+            var audio = new Audio("../music/失敗音.mp3");
+            audio.play();  
+        }
+    }
+}
+    
+function cntHyouzi(){
+    document.getElementById("status").innerHTML = cnt;
+}
+
+//start処理
+function start(){
+    reset();
+    ransu();
+    mondaiMake();
+}
+    
+    
+    
+
+
+</script>
+
+<style type="text/css">
+
+html{
+    width:100%;
+    height:100%;      
+    }
+    
+body{
+    
+    background:#ddd url("../image/乃木坂2.jpg") no-repeat center center;
+    background-size:cover;
+    }
+    
+h1{
+    margin:0 auto;
+    text-align: center;
+    font-size: 80px;
+    color:greenyellow;
+    }
+    
+#status{
+    background-color:white;
+    text-align: center;
+    font-size:30px;
+    line-height:100px;
+    margin:0 auto;
+    width:200px;
+    height:100px;    
+    }
+    
+#ooowaku{
+    position: relative;
+    margin:0 auto;
+    margin-top:150px;
+    width:800px;
+    height:350px;
+    }
+
+#oowaku{
+    height:300px;
+    width:800px;
+    border:8px solid navy;
+    background-color: rgba(0,0,0,0.5);
+    font-size:30px;
+    }
+    
+#waku1{
+    width:800px;
+    height:100ox;
+    border-bottom:5px solid black;
+    line-height: 100px;
+    color:#9966FF;
+    }
+    
+#waku2{
+    width:800px;
+    height:100px;
+    line-height: 100px;
+    border-bottom:5px solid black;
+    color:#9966FF;
+    overflow:auto;
+    }
+    
+#waku3{
+    width:800px;
+    height:100px;
+    line-height: 100px;
+    color:#9966FF;
+    overflow:auto;
+    }
+    
+#startButton{
+    position:absolute;
+    left:0;
+    bottom:0;
+    font-size:20px;
+    }
+    
+</style>
+</head>
+
+<body>
+<h1>現在制作中</h1>
+<div id ="ooowaku">
+<div id="oowaku">
+ <div id="waku1">start</div>
+ <div id="waku2">start</div>
+ <div id="waku3">start</div>
+</div>
+<div>
+<input id="startButton" type="button" value="start" onclick="start()">
+</div>
+</div>
+<div id ="status">0</div>
+</body>
+</html>

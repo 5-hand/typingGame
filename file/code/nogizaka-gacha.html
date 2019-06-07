@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charaset="utf-8">
+ <title>ガチャ</title>
+<script type="text/javascript">
+
+//帝愛の音楽
+function mouseover1() {
+ var audio = new Audio("../music/ざわざわ.mp3");
+        audio.play();
+        audio.volume =1.0;
+}
+    
+function link(){
+    if (confirm("働かずにお金がほしいですか？")==true){
+        if (confirm("それなら、命かけるしかねえだろ")==true){
+            location.href="teiai-1.html";
+        }
+    }
+}
+
+
+    
+//ガチャ中身    
+var member =[["秋元真夏(1期生)","1993年8月20日","B型","しし座","154cm",1],
+             ["生田絵梨花(1期生)","1997年1月22日","A型","みずがめ座","160cm",1],
+             ["伊藤かりん(2期生)","1993年5月26日","O型","ふたご座","153cm",2],
+             ["伊藤純奈(2期生)","1998年11月30日","A型","いて座","166cm",2],
+             ["伊藤理々杏(3期生)","2002年10月8日","B型","てんびん座","154cm",3],
+             ["井上小百合(1期生)","1994年12月14日","B型","いて座","156cm",1],
+             ["岩本蓮加(3期生)","2004年2月2日","B型","みずがめ座","157cm",3],
+             ["梅澤美波(3期生)","1999年1月6日","A型","やぎ座","170cm",3],
+             ["衛藤美彩(1期生)","1993年1月4日","AB型","やぎ座","163cm",1],
+             ["大園桃子(3期生)","1999年9月13日","O型","おとめ座","156cm",3],
+             ["北野日奈子(2期生)","1996年17日","O型","かに座","158cm",2],
+             ["久保史緒里(3期生)","2001年7月14日","O型","かに座","159cm",3],
+             ["斉藤飛鳥(1期生)","1998年8月10日","O型","しし座","158cm",1],
+             ["斉藤優里(1期生)","1993年7月20日","O型","かに座","157cm",1],
+             ["阪口珠美(3期生)","2001年11月10日","A型","さそり座","161cm",3],
+             ["桜井玲香(1期生)","1994年5月16日","A型","おうし座","155cm",1],
+             ["佐々木琴子(2期生)","1998年8月28日","A型","おとめ座","163cm",2],
+             ["佐藤楓(3期生)","1998年3月23日","A型","おひつじ座","161cm",3],
+             ["白石麻衣(1期生)","1992年8月20日","A型","しし座","162cm",1],
+             ["新内眞衣(2期生)","1992年1月22日","B型","みずがめ座","165cm",2],
+             ["鈴木絢音(2期生)","1999年3月5日","O型","うお座","160cm",2],
+             ["高山一実(1期生)","1994年2月8日","B型","みずがめ座","157cm",1],
+             ["寺田蘭世(2期生)","1998年9月23日","不明","てんびん座","155cm",2],
+             ["中田花奈(1期生)","1994年8月6日","A型","しし座","158cm",1],
+             ["中村麗乃(3期生)","2001年9月27日","不明","てんびん座","167cm",3],
+             ["西野七瀬(1期生)","1994年5月25日","O型","ふたご座","159cm",1],
+             ["樋口日奈(1期生)","1998年1月31日","A型","みずがめ座","159cm",1],
+             ["星野みなみ(1期生)","1998年2月6日","B型","みずがめ座","155cm",1],
+             ["堀未央奈(2期生)","1996年10月15日","O型","てんびん座","160cm",2],
+             ["松村沙友里(1期生)","1992年8月27日","B型","おとめ座","164cm",1],
+             ["向井葉月(3期生)","1999年8月23日","A型","おとめ座","152cm",3],
+             ["山崎怜奈(2期生)","1997年5月21日","B型","ふたご座","164cm",2],
+             ["山下美月(3期生)","1999年7月26日","O型","しし座","159cm",3],
+             ["吉田綾乃クリスティ-(3期生)","1995年9月6日","A型","おとめ座","161cm",3],
+             ["与田祐希(3期生)","2000年5月5日","O型","おうし座","152cm",3],
+             ["渡辺みり愛(2期生)","1999年11月1日","O型","さそり座","153cm",2],
+             ["和田まあや(1期生)","1998年4月23日","O型","おうし座","160cm",1], 
+             ["遠藤さくら(4期生)","2001年10月3日","不明","てんびん座","160cm",4],
+             ["賀喜遥香(4期生)","2001年8月8日","A型","しし座","166cm",4],
+             ["掛橋沙耶香(4期生)","2002年11月20日","B型","さそり座","156cm",4],
+             ["金川紗耶(4期生)","2001年10月31日","O型","さそり座","164cm",4],
+             ["北川悠理(4期生)","2001年8月8日","不明","しし座","163cm",4],
+             ["柴田柚菜(4期生)","2003年3月3日","A型","うお座","160cm",4],
+             ["清宮レイ(4期生)","2003年8月1日","O型","しし座","162cm",4],
+             ["田村真佑(4期生)","1999年1月12日","A型","やぎ座","158cm",4],
+             ["筒井あやめ(4期生)","2004年6月8日","O型","ふたご座","160cm",4],
+             ["早川聖来(4期生)","2000年8月24日","A型","おとめ座","164cm",4],
+             ["矢久保美緒(4期生)","2002年8月14日","B型","しし座","152cm",4]
+             ]; 
+             
+var music =  ["サヨナラの意味",
+              "きっかけ",
+              "裸足でSummer",
+              "何度目の青空か？",
+              "制服のマネキン",
+              "君の名は希望",
+              "インフルエンサー",
+              "命は美しい",
+              "今、話したい誰かがいる",
+              "ガールズルール",
+              "気づいたら片思い",
+              "いつかできるから今日できる",
+              "あの日僕は咄嗟に嘘をついた",
+              "世界で一番孤独なLover",
+              "あらかじめ語られるロマンス",
+              "悲しみの忘れ方",
+              "せっかちなかたつむり",
+              "やさしさとは",
+              "三番目の風",
+              "ロマンスのスタート",
+              "ひと夏の長さより・・・", 
+              "ないものねだり",
+              "ハルジオンが咲く頃",
+              "他の星から",
+              "ロマンティックいか焼き",
+              "太陽ノック",
+              "逃げ水",
+              "羽根の記憶",
+              "風船は生きている",
+              "立ち直り中",
+              "Threefoldchoice",
+              "僕だけの光",
+              "僕がいる場所",
+              "泣いたっていいじゃないか？",
+              "生まれたままで",
+              "固い殻のように抱きしめたい",
+              "アンダー",
+              "13日の金曜日",
+              "行くあてのない僕たち",
+              "設定温度",
+              "君は僕と会わない方がよかったのかな",
+              "嫉妬の権利",
+              "自惚れビーチ",
+              "光合成希望",
+              "バレッタ",
+              "My rule",
+              "狼に口笛を",
+              "孤独兄弟",
+              "急斜面",
+              "隙間",
+              "ボーダー",
+              "ダンケシェーン",
+              "ブランコ",
+              "スカイダイビング",
+              "大人への近道",
+              "失いたくないから",
+              "無口なライオン",
+              "でこぴん",
+              "オフショアガール",
+              "僕の衝動",
+              "白米様",
+              "シークレットグラフィティー",
+              "何もできずにそばにいる",
+              "夏のFree&Easy",
+              "扇風機",
+              "Another　Ghost",
+              "失恋お掃除人",
+              "魚たちのLOVE　SONG",
+              "ぐるぐるカーテン",
+              "乃木坂の歌",
+              "もう少しの夢",
+              "釣り堀",
+              "意外Break",
+              "おいでシャンプー",
+              "人間という楽器",
+              "初恋の人を今でも",
+              "シャキイズム",
+              "無表情",
+              "君に贈る花がない",
+              "私のために　誰かのために",
+              "別れ際、もっと好きになる",
+              "走れ！Bicycle",
+              "2度目のキスから",
+              "こんなバカな・・・",
+              "ここにいる理由",
+              "左胸の勇気",
+              "強がる蕾",
+              "ごめんねずっと・・・",
+              "ハウス！",
+              "あの教室",
+              "私、起きる",
+              "孤独な青空",
+              "涙がまだ悲しみだった頃",
+              "制服を脱いでサヨナラを・・・",
+              "Rewindあの日",
+              "思い出ファースト",
+              "環状六号線",
+              "忘却と美学",
+              "指望遠鏡",
+              "あなたのために弾きたい",
+　　　　　　　　 ];
+    
+//グローバル変数
+var randomMember;
+var randomName;
+var randomDob;
+var randomBlood;    
+var randomSign;
+var randomHeight;
+var randomArray = new Array();  
+    
+var randomMusic;
+var randomMusicNumber;
+    
+var randomBackgroundMusic; 
+    
+var ransu;
+             
+//メンバーの数だけランダム数を発生
+function random1(){
+    randomMember = Math.floor( Math.random() * 48);
+    randomArray  = member[randomMember];
+    randomName   = randomArray[0];
+    randomDob    = randomArray[1];
+    randomBlood  = randomArray[2];
+    randomSign  = randomArray[3];
+    randomHeight = randomArray[4];
+    randomBackgroundMusic = randomArray[5];
+ }
+    
+function random2(){
+    randomMusic = Math.floor( Math.random() * 100);
+    randomMusicNumber = music[randomMusic];
+}
+    
+function random3(){
+    if(!(ransu == 9)){
+    switch(randomBackgroundMusic){
+        case 1:
+        var audio1 = new Audio("../music/Against.mp3");
+        audio1.play();
+        break;
+            
+        case 2:
+        var audio1 = new Audio("../music/ボーダー.mp3");
+        audio1.play();
+        break;
+            
+        case 3:
+        var audio1 = new Audio("../music/三番目の風.mp3");
+        audio1.play();
+        break;
+            
+        case 4:
+        var audio1 = new Audio("../music/ぐるぐるカーテン.mp3");
+        audio1.play();
+        break;
+    }
+   } 
+}
+    
+function random4(){
+    ransu = Math.floor( Math.random() * 10);
+}
+    
+    
+function Music1(){
+ if((!(ransu == 9))){
+   if(randomMember == 47){
+     var audio2 = new Audio("../music/コール.mp3");
+     audio2.play();
+    }else if(randomMember == 12){
+     var audio2 = new Audio("../music/俺の嫁.mp3");
+     audio2.play(); 
+    }else{
+     var audio2 = new Audio("../music/ガチャ音.mp3");
+     audio2.play(); 
+  }
+ }else{
+    var audio2 = new Audio("../music/制服のマネキン.mp3");
+    audio2.play();   
+ }
+}
+    
+function gazou1(){
+    switch(randomMember){
+        case 0:
+        document.body.style.backgroundImage = "url('../image/宣材写真/1.jpg')" ;
+        break;
+            
+        case 1:
+        document.body.style.backgroundImage = "url('../image/宣材写真/2.jpg')" ;
+        break;
+            
+        case 2:
+        document.body.style.backgroundImage = "url('../image/宣材写真/3.jpg')" ;
+        break;
+                 
+        case 3:
+        document.body.style.backgroundImage = "url('../image/宣材写真/4.jpg')" ;
+        break;
+            
+        case 4:
+        document.body.style.backgroundImage = "url('../image/宣材写真/5.jpg')" ;
+        break;
+            
+        case 5:
+        document.body.style.backgroundImage = "url('../image/宣材写真/6.jpg')" ;
+        break;
+            
+        case 6:
+        document.body.style.backgroundImage = "url('../image/宣材写真/7.jpg')" ;
+        break;
+                      
+        case 7:
+        document.body.style.backgroundImage = "url('../image/宣材写真/8.jpg')" ;
+        break;
+            
+        case 8:
+        document.body.style.backgroundImage = "url('../image/宣材写真/9.jpg')" ;
+        break;
+            
+        case 9:
+        document.body.style.backgroundImage = "url('../image/宣材写真/10.jpg')" ;
+        break;
+            
+        case 10:
+        document.body.style.backgroundImage = "url('../image/宣材写真/11.jpg')" ;
+        break;
+                     
+        case 11:
+        document.body.style.backgroundImage = "url('../image/宣材写真/12.jpg')" ;
+        break;
+            
+        case 12:
+        document.body.style.backgroundImage = "url('../image/宣材写真/13.jpg')" ;
+        break;
+            
+        case 13:
+        document.body.style.backgroundImage = "url('../image/宣材写真/14.jpg')" ;
+        break;
+            
+        case 14:
+        document.body.style.backgroundImage = "url('../image/宣材写真/15.jpg')" ;
+        break;
+                 
+        case 15:
+        document.body.style.backgroundImage = "url('../image/宣材写真/16.jpg')" ;
+        break;
+            
+        case 16:
+        document.body.style.backgroundImage = "url('../image/宣材写真/17.jpg')" ;
+        break;
+            
+        case 17:
+        document.body.style.backgroundImage = "url('../image/宣材写真/18.jpg')" ;
+        break;
+            
+        case 18:
+        document.body.style.backgroundImage = "url('../image/宣材写真/19.jpg')" ;
+        break;
+                      
+        case 19:
+        document.body.style.backgroundImage = "url('../image/宣材写真/20.jpg')" ;
+        break;
+            
+        case 20:
+        document.body.style.backgroundImage = "url('../image/宣材写真/21.jpg')" ;
+        break;
+            
+        case 21:
+        document.body.style.backgroundImage = "url('../image/宣材写真/22.jpg')" ;
+        break;
+            
+        case 22:
+        document.body.style.backgroundImage = "url('../image/宣材写真/23.jpg')" ;
+        break;
+                     
+        case 23:
+        document.body.style.backgroundImage = "url('../image/宣材写真/24.jpg')" ;
+        break;
+            
+        case 24:
+        document.body.style.backgroundImage = "url('../image/宣材写真/25.jpg')" ;
+        break;
+                      
+        case 25:
+        document.body.style.backgroundImage = "url('../image/宣材写真/26.jpg')" ;
+        break;
+            
+        case 26:
+        document.body.style.backgroundImage = "url('../image/宣材写真/27.jpg')" ;
+        break;
+            
+        case 27:
+        document.body.style.backgroundImage = "url('../image/宣材写真/28.jpg')" ;
+        break;
+            
+        case 28:
+        document.body.style.backgroundImage = "url('../image/宣材写真/29.jpg')" ;
+        break;
+                     
+        case 29:
+        document.body.style.backgroundImage = "url('../image/宣材写真/30.jpg')" ;
+        break;
+            
+        case 30:
+        document.body.style.backgroundImage = "url('../image/宣材写真/31.jpg')" ;
+        break;
+            
+        case 31:
+        document.body.style.backgroundImage = "url('../image/宣材写真/32.jpg')" ;
+        break;
+            
+        case 32:
+        document.body.style.backgroundImage = "url('../image/宣材写真/33.jpg')" ;
+        break;
+                 
+        case 33:
+        document.body.style.backgroundImage = "url('../image/宣材写真/34.jpg')" ;
+        break;
+            
+        case 34:
+        document.body.style.backgroundImage = "url('../image/宣材写真/35.jpg')" ;
+        break;
+            
+        case 35:
+        document.body.style.backgroundImage = "url('../image/宣材写真/36.jpg')" ;
+        break;
+            
+        case 36:
+        document.body.style.backgroundImage = "url('../image/宣材写真/37.jpg')" ;
+        break;
+                      
+        case 37:
+        document.body.style.backgroundImage = "url('../image/宣材写真/38.jpg')" ;
+        break;
+            
+        case 38:
+        document.body.style.backgroundImage = "url('../image/宣材写真/39.jpg')" ;
+        break;
+            
+        case 39:
+        document.body.style.backgroundImage = "url('../image/宣材写真/40.jpg')" ;
+        break;
+            
+        case 40:
+        document.body.style.backgroundImage = "url('../image/宣材写真/41.jpg')" ;
+        break;
+            
+        case 41:
+        document.body.style.backgroundImage = "url('../image/宣材写真/42.jpg')" ;
+        break;
+                      
+        case 42:
+        document.body.style.backgroundImage = "url('../image/宣材写真/43.jpg')" ;
+        break;
+            
+        case 43:
+        document.body.style.backgroundImage = "url('../image/宣材写真/44.jpg')" ;
+        break;
+            
+        case 44:
+        document.body.style.backgroundImage = "url('../image/宣材写真/45.jpg')" ;
+        break;
+            
+        case 45:
+        document.body.style.backgroundImage = "url('../image/宣材写真/46.jpg')" ;
+        break;
+                     
+        case 46:
+        document.body.style.backgroundImage = "url('../image/宣材写真/47.jpg')" ;
+        break;
+            
+        case 47:
+        document.body.style.backgroundImage = "url('../image/宣材写真/48.jpg')" ;
+        break;
+ 
+    }
+
+}
+    
+    
+function script1(){
+    var hyouziMethod1= document.getElementById("a1");
+    a1.innerHTML = randomName;
+}
+    
+function script2(){    
+    var hyouziMethod= document.getElementById("a2");
+    a2.innerHTML = randomDob;
+}
+
+function script3(){
+    var hyouziMethod= document.getElementById("a3");
+    a3.innerHTML = randomBlood;
+}
+    
+function script4(){    
+    var hyouziMethod= document.getElementById("a4");
+    a4.innerHTML = randomSign;
+}
+
+function script5(){
+    var hyouziMethod= document.getElementById("a5");
+    a5.innerHTML = randomHeight;
+}
+
+function script6(){
+    var hyouziMethod= document.getElementById("a6");
+    a6.innerHTML = randomMusicNumber;
+}
+    
+function script7(){
+    switch(ransu){
+        case 0:
+        case 1:
+        randomPosition = "アンダー";
+        break;
+            
+        case 2:
+        case 3:
+        randomPosition = "アンダーセンター";
+        break;
+            
+        case 4:
+        case 5:
+        case 6:
+        randomPosition = "選抜";
+        break;
+            
+        case 7:
+        case 8:
+        randomPosition = "14福神";
+        break;
+            
+        case 9:
+        randomPosition = "センター";
+        break;
+    }
+    var hyouziMethod= document.getElementById("a7");
+    a7.innerHTML = randomPosition;
+}
+
+function disabled(){
+  var obj = document.getElementById("startButton");
+    obj.disabled = true;  
+}
+    
+function start(){
+    audio.pause();
+    disabled();
+    random4();
+    random1();
+    random2();
+    Music1();
+    setTimeout('gazou1()',  5000);
+    setTimeout('random3()', 8000);
+    setTimeout('script1()', 5000);
+    setTimeout('script2()', 4000);
+    setTimeout('script3()', 3000);
+    setTimeout('script4()', 2000);
+    setTimeout('script5()', 1000);
+    setTimeout('script6()', 6000);
+    setTimeout('script7()', 8000);
+    }
+
+</script>
+<style type="text/css">
+html{
+    width:100%;
+    height:100%;
+}
+    
+body{
+    background:#ddd url("../image/ガチャ１.jpg") no-repeat 50% 25%;
+    background-size:cover;
+}
+    
+.title{
+    text-align: center;
+    margin:0 auto;
+    color:rgba(255,0,255,0.7);
+    }
+    
+#startButton{
+   display:block;
+   margin:0 auto;
+   margin-top: 250px;
+    }
+    
+.linkbutton{  
+    position:absolute;
+    bottom:0;
+    left:0;
+    background-image: url("../image/帝愛.jpg");
+    background-size:cover;
+    width:100px;
+    height:80px;    
+    }
+    
+.result{
+    margin:0 auto;
+    border:2px solid black;
+    width:400px;
+    height:290px;
+    color:#9966FF;
+  -webkit-text-stroke: 0.5px white;
+  background-color: rgba(255,0,255,0.3);
+    }
+    
+#hyouzi1{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;
+    border-bottom:2px solid black;    
+    }
+#hyouzi2{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;
+    border-bottom:2px solid black;    
+    }
+#hyouzi3{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;
+    border-bottom:2px solid black;    
+    }
+#hyouzi4{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;
+    border-bottom:2px solid black;    
+    }
+#hyouzi5{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;
+    border-bottom:2px solid black;
+    }
+#hyouzi6{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;
+     border-bottom:2px solid black;
+    }
+#hyouzi7{
+    font-size:12px;
+    line-height: 50px;
+    height:40px;   
+    }
+
+#a1{
+    font-size:15px;
+    }
+
+#a2{
+    font-size:15px;
+    }
+    
+#a3{
+    font-size:15px;
+    }
+    
+#a4{
+    font-size:15px;
+    }
+    
+#a5{
+    font-size:15px
+    }
+    
+#a6{
+    font-size:15px;
+    }
+    
+#a7{
+    font-size:20px;
+    color:yellow;
+    }
+    
+</style>
+</head>
+<body>
+<script>
+var randomSet = Math.floor( Math.random() * 2);
+var playlist = [
+  '../music/ないものねだり.mp3',
+  '../music/悲しみの忘れ方.mp3'
+  
+];
+var audio = document.createElement('audio');
+document.body.appendChild(audio);
+audio.autoplay = true;
+audio.volume = 1.0;
+audio.src = playlist[randomSet];
+audio.play();
+audio.addEventListener('ended', function(){
+  randomSet++;
+  if (randomSet < playlist.length) {
+    audio.src = playlist[randomSet];
+    audio.play();
+  }
+  else {
+    audio.src = playlist[0];
+    audio.play();
+    index = 0;
+      
+  }
+});
+</script>
+<div class="title">
+<h1>いままでありがとう<br>～西野七瀬＆衛藤美彩～<br>イベントガチャ</h1>
+</div>
+<div class="button">   
+<input type="button" id="startButton" value="ガチャスタート" onclick="start()" >
+</div>   
+<div class="result">
+   <div id="hyouzi1">名前:<a id="a1"></a></div>
+   <div id="hyouzi2">生年月日:<a id="a2"></a></div>
+   <div id="hyouzi3">血液型:<a id="a3"></a></div>
+   <div id="hyouzi4">星座:<a id="a4"></a></div>
+   <div id="hyouzi5">身長:<a id="a5"></a></div>
+   <div id="hyouzi6">オススメの曲：<a id="a6"></a></div>
+   
+  <div id="hyouzi7">
+   <a id="day">
+   <script>    
+    var today = new Date();
+    var todayDate = today.getDate();
+    var st = "stポジション";
+    var nd = "ndポジション";
+    var rd = "rdポジション";
+    var th = "thポジション";
+    
+    if(todayDate == 1 || todayDate == 21 || todayDate == 31){      
+         var hyouziMethod = document.getElementById("day");
+         day.innerHTML = todayDate + st;
+    }else if(todayDate == 2 || todayDate == 22){
+         var hyouziMethod = document.getElementById("day");
+         day.innerHTML = todayDate + nd;
+    }else if(todayDate == 3 || todayDate == 23){
+         var hyouziMethod  = document.getElementById("day");
+         day.innerHTML = todayDate + rd;
+    }else{
+         var hyouziMethod = document.getElementById("day");
+         day.innerHTML = todayDate + th;
+         }
+   </script>
+   </a>：<a id="a7"></a>
+  </div>
+</div>
+
+<input type="button" onmouseover ="mouseover1()"  class="linkbutton" onClick="link()"> 
+</body>
+</html>

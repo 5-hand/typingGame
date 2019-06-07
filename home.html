@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+ <meta charaset="UTF-8">
+ <title>乃木坂⊿TYPING-FESTIVAL</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    setInterval(function(){
+        $('a').fadeOut(1000,function(){$(this).fadeIn(800)});
+    },1000);
+});
+    
+</script>
+
+ <style type="text/css">
+<!--
+html{
+  width:100%;
+  height:100%;
+}
+     
+body {
+  background-image: url("file/image/ライブ.jpg");
+  background-size: cover;
+}
+h1{
+   color:#9966FF;
+  -webkit-text-stroke: 1px white;
+   text-align: center;
+   margin:0 auto;
+   font-size:50px;
+   margin-top:100px;
+    }
+#button{
+    text-align:center;
+    margin-top:250px; 
+    
+    }
+.btn{
+    text-decoration: none;
+    font-weight: bold;
+    font-size:30px;
+    color: white;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.32), 0px 1px 0px #6182ca, 0px 2px 0px #4f6aa7, 0px 3px 0px #5470ad;
+    
+}
+.btn:active {
+    top: 4px;
+    text-shadow: none;
+}
+</style>
+ </head>
+ <body>   
+ <embed src="file/music/overture.mp3" autoStart=true hidden=true>
+ <h1 class="shine">乃木坂⊿<br>TYPEING FESTIVAL</h1>
+ <div id=button>
+ <a onclick="location.replace('file/code/nogizaka-mode-select.html')" class="btn">TOUCH TO START</a>
+ </div>
+ </body>
+</html>

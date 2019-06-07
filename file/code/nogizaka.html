@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <meta name="GENERATOR" content="UTF-8 Writer" />
+<title>乃木坂タイピングフェスティバル</title>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script>
+      $(function() {
+        $("#decisionLevel01").click(function() {
+          $("#decisionLevel01").css("background-color", "white");
+          $("#decisionLevel01").css("color", "#9966FF");
+          $("#decisionLevel02").css("background-color", "#9966FF");
+          $("#decisionLevel02").css("color", "black");
+          $("#decisionLevel03").css("background-color", "#9966FF");
+          $("#decisionLevel03").css("color", "black");
+        });
+        });  
+          
+       $(function() {
+        $("#decisionLevel02").click(function() {
+          $("#decisionLevel02").css("background-color", "white");
+          $("#decisionLevel02").css("color", "#9966FF");
+          $("#decisionLevel03").css("background-color", "#9966FF");
+          $("#decisionLevel03").css("color", "black");
+          $("#decisionLevel01").css("background-color", "#9966FF");
+          $("#decisionLevel01").css("color", "black");
+        });
+       });
+           
+       $(function() {
+        $("#decisionLevel03").click(function() {
+          $("#decisionLevel03").css("background-color", "white");
+          $("#decisionLevel03").css("color", "#9966FF");
+          $("#decisionLevel01").css("background-color", "#9966FF");
+          $("#decisionLevel01").css("color", "black");
+          $("#decisionLevel02").css("background-color", "#9966FF");
+          $("#decisionLevel02").css("color", "black");
+        });
+      });
+    </script>   
+<script>
+
+document.onkeydown = typeGame;  //キー押下時に関数typeGame()を呼び出す
+    
+
+
+//文字を格納する配列
+var moji = new Array("Ａ","Ｂ","Ｃ","Ｄ","Ｅ","Ｆ","Ｇ","Ｈ","Ｉ",
+                     "Ｊ","Ｋ","Ｌ","Ｍ","Ｎ","Ｏ","Ｐ","Ｑ","Ｒ",
+                     "Ｓ","Ｔ","Ｕ","Ｖ","Ｗ","Ｘ","Ｙ","Ｚ","１",
+                     "２","３","４","５","６","７","８","９","０",
+                     ":",";",",","-",".","/");
+
+//キーコードを格納する配列
+var kcode = new Array(65,66,67,68,69,70,71,72,73,
+                      74,75,76,77,78,79,80,81,82,
+                      83,84,85,86,87,88,89,90,49,
+                      50,51,52,53,54,55,56,57,48,
+                      186,187,188,189,190,191,
+                      );
+    
+//乱数を格納する配列
+var rnd = new Array();
+
+
+
+//グローバル変数群
+var mondai = "";       //問題の文字列を格納
+var cnt=0;             //何問目か格納
+var typStart,typEnd;   //開始時と終了時の時刻を格納
+var typecnt=0;         //タッチ回数を格納
+var tokuten=0;
+var gazou;
+var level=1;           //レベルを格納、初期設定は１
+var keyLevel;          //出現key数
+
+    
+    
+function levelSet1(){
+    level = 1;
+    gameSet();
+}
+    
+function levelSet2(){
+    level = 2;
+    gameSet();
+}
+    
+function levelSet3(){
+    level = 3;
+    gameSet();
+}
+
+//0～35までの乱数を200個作成して配列rndに格納する関数
+function ransu()
+{
+  if(level==1){
+      keyLevel = 26;
+  }else if(level==2){
+      keyLevel = 36;
+  }else if(level==3){
+      keyLevel = 42;
+  }
+    
+  for ( var i = 0 ; i < 200 ; i++ )
+  {
+    rnd[i] = Math.floor( Math.random() * keyLevel );
+  }
+  } 
+      
+//背景を変える関数
+function　test(){
+    switch(gazou){
+    case 1:
+    document.body.style.backgroundImage = "url('../image/パンパカパーン.jpg')"
+    break;
+         
+    case 2:
+    document.body.style.backgroundImage = "url('../image/デブ.jpg')"
+    break;
+         
+    case 3:
+    document.body.style.backgroundImage = "url('../image/ボーノー.jpg')"
+    break;
+        
+    case 4:
+    document.body.style.backgroundImage = "url('../image/バカアニキ.jpg')"
+    break;
+            
+    case 5:
+    document.body.style.backgroundImage = "url('../image/threefoldchoice.jpg')"
+    break;
+    }
+}
+
+    
+//エキスパートをクリアしたらウェブのリンクを出す
+function linkSet()
+{
+if (confirm("おめでとう！ゲームクリアです！\n特典映像へ移動しますか?")==true)
+    location.replace("nogizaka-tokutenn.html");
+    
+}
+
+function seikou(){
+    var audio = new Audio("../music/成功音.mp3");
+    audio.play();
+}
+    
+function shippai(){
+    var audio = new Audio("../music/失敗音.mp3");
+    audio.play();
+    audio.volume =1.0;
+}
+    
+function expert(){
+    var audio = new Audio("../music/パン.mp3");
+    audio.play();
+    audio.volume =1.0;
+}
+    
+function hard(){
+    var audio = new Audio("../music/デブ.mp3");
+    audio.play();
+    audio.volume =1.0;
+}
+
+function normal(){
+    var audio = new Audio("../music/ボーノー.mp3");
+    audio.play();
+    audio.volume =1.0;
+}
+    
+function easy(){
+    var audio = new Audio("../music/バカ兄貴.mp3");
+    audio.play();
+    audio.volume =1.0;
+}
+    
+function daisu(){
+    var unnmei =Math.floor( Math.random() * 9);
+    switch(unnmei){
+        case 0:
+        var audio = new Audio("../music/遊戯王.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 1:
+        var audio = new Audio("../music/東映.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 2:
+        var audio = new Audio("../music/海馬.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 3:
+        var audio = new Audio("../music/負け犬.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 4:
+        var audio = new Audio("../music/爆殺.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 5:
+        var audio = new Audio("../music/大喝采.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 6:
+        var audio = new Audio("../music/粉砕.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 7:
+        var audio = new Audio("../music/行け海馬.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+            
+        case 8:
+        var audio = new Audio("../music/俺のターン.mp3");
+        audio.play();
+        audio.volume =1.0;
+        break;
+    }
+}
+   
+
+//タイピングゲームの問題をセットする関数
+function gameSet()
+{
+  //問題文とカウント数をクリアする
+  mondai="";
+  cnt=0;
+　typecnt=0;
+  tokuten=0;
+  gazou=5;
+    
+
+ 
+  //画像設定関数
+  test();
+    
+  //乱数作成関数の呼び出し
+  ransu();
+  
+  //問題文の作成（配列mojiの要素をランダムに200文字繋げる）
+  //mondai= "" + moji[rnd[0]] + moji[rnd[1]] + … + moji[rnd[199]]となる
+  for ( var i = 0 ; i < rnd.length ; i++)
+  {
+    mondai =  mondai + moji[ rnd[i] ];
+  }
+  
+  //問題枠に表示する
+  document.getElementById("waku").innerHTML = mondai;
+
+}
+
+
+//キー入力を受け取る関数
+function typeGame(evt)
+{
+  var kc;  //入力されたキーコードを格納する変数
+  typecnt++;
+  //入力されたキーのキーコードを取得
+  //if(document.all)はvarチェックとして機能
+　if (document.all)
+  {
+    //押されたキーのUnicode値が返ります
+    kc = event.keyCode;
+  }
+  else
+  {
+    //which=押されたキーコードを返す
+    kc = evt.which;
+  }
+    
+  
+  //入力されたキーコードと、問題文のキーコードを比較
+  if (kc == kcode[ rnd[cnt] ]){
+    //以下、キーコードが一致した時の処理
+        seikou(); 
+      
+    //最初の1文字が入力された時間を記録する
+    if (cnt==0)
+    { 
+      typStart = new Date();
+    }
+    
+    cnt++; //カウント数を＋１にする
+    
+    //全文字入力したか確認
+    if ( cnt < rnd.length)
+    {
+      //問題文の頭の一文字を切り取る
+      mondai = mondai.substring(1,mondai.Length);
+
+      //問題枠に表示する
+      document.getElementById("waku").innerHTML = mondai;
+    }
+    else
+    {
+    //全文字入力していたら、終了時間を記録する
+      typEnd = new Date();
+      
+      //終了時間－開始時間で掛かったミリ秒を取得する
+      var keika = typEnd - typStart;
+      
+      //1000で割って「切捨て」、秒数を取得
+      var sec = Math.floor( keika/1000 );
+      
+      //1000で割った「余り(%で取得できる）」でミリ秒を取得
+      var msec = keika % 1000;
+        
+      //そうタイプ数を問題数で割る計算式
+      var seikouritu = (rnd.length / typecnt) * 100;
+        
+      seikouritu = seikouritu.toFixed(2);
+      
+    　//ゲーム時間判定
+      var fin="GAME終了　時間："+sec+"秒"+msec+"成功率は"+seikouritu+"%です!";
+        
+      //ランク別判定分
+    
+     var easyRank ="あなたのランクはEASYです。しっかりしてよ、バカ兄貴";
+     var normalRank="あなたのランクはNORMALです。ボ～ノ～";
+     var hardRank="あなたのランクはHARDです。デブでも力はあるから負けねーよ";
+     var expertRank="あなたのランクはEXPERTです。パンパンパンパンカパーン、パンが大好き星野みなみ";
+
+
+ if(sec < 150 && seikouritu >= 90){
+      //問題枠にゲーム終了を表示
+      document.getElementById("waku").innerHTML = fin+expertRank;
+      expert();
+     if(level ==3){
+        linkSet(); 
+     }
+      gazou =1;
+      test();
+   } else if(sec < 180 && seikouritu >= 85){
+      document.getElementById("waku").innerHTML = fin+hardRank;
+      hard();
+      gazou=2;
+      test();
+   } else if(sec < 200 && seikouritu >= 80){
+      document.getElementById("waku").innerHTML = fin+normalRank;
+      normal();
+      gazou=3;
+      test();
+   } else{ 
+      document.getElementById("waku").innerHTML = fin+easyRank;
+      easy();
+      gazou=4;
+      test();
+   }
+   }    
+  }else{
+      shippai(); 
+  }
+}
+
+
+    
+</script>
+
+<style type="text/css">
+<!--
+
+html{
+  height:100%;
+  width:100%;
+    }
+    
+body{
+  background:#ddd url("../image/threefoldchoice.jpg") no-repeat center center;
+  background-size:contain;
+}
+    
+div#oowaku{
+  position:relative;
+  margin:0 auto;
+  height:260px;
+  width:800px;
+    }
+    
+div#waku
+{
+  border:8px solid navy;
+  width:800px;
+  height:200px;
+  font-size:18pt;
+  overflow:auto;
+  margin:0 auto;
+  margin-top:100px;
+  color:#9966FF;
+  -webkit-text-stroke: 0.5px white;
+  background-color: rgba(0,0,0,0.5);
+  }
+    
+#button{
+    margin-top:10px;  
+    position:absolute;
+    width:800px;
+    height:30px;
+    left:0px;
+    bottom:0px;
+    margin-top:10px;
+    display:inline;
+    }
+    
+#button01{
+    background-color:#9966FF;
+    color:black;
+    }
+    
+
+#decisionLevel01{
+    background-color:white;
+    color:#9966FF;
+    margin-left:10px;
+    }
+    
+#decisionLevel02{
+    background-color:#9966FF;
+    color:black;
+    margin-left:10px;
+    }
+
+#decisionLevel03{
+    background-color:#9966FF;
+    color:black;
+    margin-left:10px;
+    }
+    
+#back{
+    background-color:#9966FF;
+    color:black;
+    margin-left:10px;
+    }
+
+    
+table {
+    margin-top:500px;
+    margin:0 auto;
+	border-collapse: collapse;
+    border:2px solid gray;
+    width:400px;
+    height:200px;
+    font-size:15px;
+    background-color:#9966FF;
+}
+    
+td {
+	border: solid 1px;
+	padding: 0.5em;
+}
+    
+
+-->
+</style>
+
+</head>
+<body onload="gameSet()" bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#800080">
+<audio src="../music/マイハート.mp3" controls autoplay loop ></audio>
+<div id="oowaku">
+<div id="waku"></div>
+<div id="button">
+<input id="button01"type="button" value="問題リセット" onclick="gameSet() + daisu()">
+<input id="decisionLevel01" type="button" value="1" onclick="levelSet1()+ daisu()">
+<input id="decisionLevel02" type="button" value="2" onclick="levelSet2()+ daisu()">
+<input id="decisionLevel03" type="button" value="3" onclick="levelSet3()+ daisu()">
+<input id="back" type="button" value="Back" onclick="location.replace('nogizaka-mode-select.html')">
+</div>
+</div>
+
+<div id="rule">
+<table>
+ <tr>
+     <td>ランク</td>
+     <td>タイム</td>
+     <td>成功率</td>
+ </tr>
+ <tr>
+     <td>EXPERT</td>
+     <td>150秒以内</td>
+     <td>90%以上</td>
+ </tr>
+ <tr>
+     <td>HARD</td>
+     <td>180秒以内</td>
+     <td>85%以上</td>
+ </tr>
+ <tr>
+     <td>NORMAL</td>
+     <td>200秒以内</td>
+     <td>80%以上</td>
+ </tr>
+ <tr>
+     <td>EASY</td>
+     <td>200秒以上</td>
+     <td>80%未満</td>
+　</tr>
+</table>
+
+</div>
+</body>
+</html>
